@@ -1,0 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# Ignoring all unnecessary  frontend files
+frontendUI/.DS_Store
+frontendUI/.tern-project
+frontendUI/build/*
+frontendUI/node_modules/*
+frontendUI/dist/
+frontendUI/npm-debug.log*
+frontendUI/yarn-debug.log*
+frontendUI/yarn-error.log*
+frontendUI/test/unit/coverage/
+frontendUI/test/e2e/reports/
+frontendUI/selenium-debug.log
+frontendUI/package-lock.json
+frontendUI/tests/unit/coverage/
