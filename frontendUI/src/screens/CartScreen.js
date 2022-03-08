@@ -29,7 +29,7 @@ export default function CartScreen({location}){
     
     const checkoutHandler = () => {
         console.log('checkoutHandler');
-        navigate('/login');
+        navigate('/shipping');
     }
 
     return (
