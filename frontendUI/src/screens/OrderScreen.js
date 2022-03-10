@@ -29,7 +29,7 @@ export default function OrderScreen() {
         if (!order || order._id !== Number(orderId)) {
              dispatch(getOrderDetails(orderId));
         }
-    }, [orderId])
+    }, [dispatch, order, orderId])
 
     return loading ? (<Loader />)
             : error ? (<Message variant='danger'>{error}</Message>)
