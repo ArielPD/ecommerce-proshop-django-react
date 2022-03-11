@@ -12,7 +12,7 @@ export const HomeScreen = () => {
     const {error, loading, products} = productList;
 
     useEffect(()=> {
-        dispatch(listProducts)
+        dispatch(listProducts())
     }, [dispatch])
 
   return (
