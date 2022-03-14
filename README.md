@@ -1,7 +1,7 @@
 # Proshop Ecommerce  website with Django - React
 
-!(feature_1.png)
-!(feature_2.png)
+![Screenshot](feature_1.png)
+![Screenshot](feature_2.png)
 
 # Features
 * Full featured shopping cart
