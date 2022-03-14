@@ -5,6 +5,7 @@ import { Table, Button, Row, Col} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Paginate from '../components/Paginate';
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
@@ -12,9 +13,10 @@ export default function ProductListScreen() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const productList = useSelector(state => state.productList );
-    const { loading, error, products} = productList;
+    const { loading, error, products, page, pages} = productList;
 
     const productDelete = useSelector(state => state.productDelete);
     const {loading:loadingDelete, error:errorDelete, success:successDelete} = productDelete;
@@ -25,6 +27,8 @@ export default function ProductListScreen() {
     const userLogin = useSelector(state => state.userLogin);
     const {userInfo} = userLogin;
 
+    let keyword = location.search;
+
     useEffect(() => {
         
         if (!userInfo.isAdmin) {
@@ -34,10 +38,10 @@ export default function ProductListScreen() {
         if (successCreate) {
             navigate(`/admin/product/${productedCreate._id}/edit/`);
         } else {
-            dispatch(listProducts());
+            dispatch(listProducts(keyword));
         }
         dispatch({ type: PRODUCT_CREATE_RESET })
-    }, [dispatch, navigate, userInfo, successDelete, successCreate, productedCreate])
+    }, [dispatch, navigate, userInfo, successDelete, successCreate, productedCreate, keyword])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
@@ -72,6 +76,7 @@ export default function ProductListScreen() {
              : error
                 ? (<Message variant='danger'>{error}</Message>) 
                 : (
+                    <div>
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead>
                             <tr>
@@ -105,6 +110,8 @@ export default function ProductListScreen() {
                             ))}
                         </tbody>
                     </Table>
+                    <Paginate page={page} pages={pages} isAdmin={true}/>
+                    </div>
                 ) 
             }
         </div>
