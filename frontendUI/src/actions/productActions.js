@@ -28,10 +28,10 @@ import {
 } from '../constants/productConstants';
 import { USER_DELETE_SUCCESS } from '../constants/userConstants';
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_LIST_REQUEST});
-        const {data} = await axios.get('/api/products/');
+        const {data} = await axios.get(`/api/products${keyword}`);
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
